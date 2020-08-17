@@ -11,9 +11,9 @@ client.on('message', async message => {
     //this will check if a message starts with the bot prefix or if the message sender is a Discord bot themselves
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    //will take messages from Discord and check if they match the commands below 
-    const args = message.content.slice(prefix.length).split(' '); 
-    const command = args.shift().toLowerCase(); 
+    //will take messages from Discord and check if they match the commands below
+    const args = message.content.slice(prefix.length).split(' ');
+    const command = args.shift().toLowerCase();
 
     if (command === 'cabpun') {
         const puns = [
@@ -34,19 +34,20 @@ client.on('message', async message => {
         message.channel.send(puns[randomPun]);
     }
 
-    else if (command === "quizpings" || command === "roles") {
+    else if (command === "roles") {
         // if (!message.member.hasPermission("MANAGE_CHANNELS")) {
         //     return message.reply("You do not have permissions to use this command");
         // }
-        
+
         let embed = new MessageEmbed()
-        .setTitle('Quiz Pings')
-        .setDescription('React to this message with <:cabwot:739717347618717726> to view and receive pings from the quiz channels!')
+        .setTitle('Server Roles')
+        .setDescription('React to this message with the emote corresponding to the role you want!\n\n<:cabwot:739717347618717726> - Quiz Subscriber Role (Grants ability to view tetris exercises)\n<:thonk:733831723187568690> - Lecture Announcements Role (Will receive pings)')
         .setColor('00688B')
         let sentEmbed = await message.channel.send(embed);
         sentEmbed.react('739717347618717726')
+        sentEmbed.react('733831723187568690')
     }
-    
+
     else if (command === "ping") {
         message.channel.send("Pong, I'm currently online! My commands are: !cabpun, !quizpings")
     }
@@ -63,11 +64,14 @@ client.on("messageReactionAdd", async (reaction, user)=>{
 
         //restrict it so that you can only react to the msg sent by the roles command
         if(!reaction.message.embeds[0]) return;
-        if(reaction.message.embeds[0].title != "Quiz Pings") return;
+        if(reaction.message.embeds[0].title != "Server Roles") return;
 
         if(reaction.message.guild.id === '718603683624910941'){
             if(reaction.emoji.name === 'cabwot'){
                 await reaction.message.guild.members.cache.get(user.id).roles.add('742435236243046482');
+            }
+            else if(reaction.emoji.name === "thonk") {
+                await reaction.message.guild.members.cache.get(user.id).roles.add('744805166888386560');
             }
         }
     }
@@ -84,14 +88,17 @@ client.on("messageReactionRemove", async (reaction, user)=>{
 
         if(user.bot) return;
         if(!reaction.message.guild) return;
-        
+
         // restrict it so that you can only react to the msg sent by the roles command
         if(!reaction.message.embeds[0]) return;
-        if(reaction.message.embeds[0].title != "Quiz Pings") return;
+        if(reaction.message.embeds[0].title != "Server Roles") return;
 
         if(reaction.message.guild.id === '718603683624910941'){
             if(reaction.emoji.name === 'cabwot'){
                 await reaction.message.guild.members.cache.get(user.id).roles.remove('742435236243046482');
+            }
+            else if(reaction.emoji.name === "thonk") {
+                await reaction.message.guild.members.cache.get(user.id).roles.remove('744805166888386560');
             }
         }
     }
