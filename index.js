@@ -34,7 +34,8 @@ client.on('message', async message => {
 		"What's Cab's gender?\nCaboozled guy.",
 		"What does Cab do to you no one?\nCaboozled spies.",
 		"What happens when Cab goes 6-6 against another player?\nCaboozled ties.",
-		"When does Cab do when he's in a tourney?\nCaboozled vies."
+		"When does Cab do when he's in a tourney?\nCaboozled vies.",
+		"What does cab say when hes tired of bad puns?\nCaboozled_bye."
         ]
 
         const randomPun = Math.floor((Math.random() * puns.length));
