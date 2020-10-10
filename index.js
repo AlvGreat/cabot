@@ -17,17 +17,24 @@ client.on('message', async message => {
 
     if (command === 'cabpun') {
         const puns = [
-            "What does he do when he’s disappointed?\nCaboozled sighs",
-            "What's Cab's favorite mathematical symbol?\nCaboozled_pi.",
-            "What's gonna happen when Cab misdrops?\nHe'll Caboozled_die.",
-            "What do his followers/underlings call him?\nCaboozled sen-pie.",
-            "What do Cab's fans say when he brutally murders them (in Tetris)?\nCaboozled, why?!",
-            "What does Cab do when he's sleepy?\nCaboozled lies (in bed).",
-            "What does Cab do when he gets tagged?\nCaboozled replies.",
-            "What does Cab do when he loses his X rank?\nCaboozled cries.",
-            "What does Cab do at the store?\nCaboozled buys.",
-            "How does Cab feel when he gets disconnected?\nConfuzled_pie.",
-            "What does Cab do in zero gravity?\nCaboozled flies.",
+		"What does he do when he’s disappointed?\nCaboozled sighs",
+		"What's Cab's favorite mathematical symbol?\nCaboozled_pi.",
+		"What's gonna happen when Cab misdrops?\nHe'll Caboozled_die.",
+		"What do his followers/underlings call him?\nCaboozled sen-pie.",
+		"What do Cab's fans say when he brutally murders them (in Tetris)?\nCaboozled, why?!",
+		"What does Cab do when he's sleepy?\nCaboozled lies (in bed).",
+		"What does Cab do when he gets tagged?\nCaboozled replies.",
+		"What does Cab do when he loses his X rank?\nCaboozled cries.",
+		"What does Cab do at the store?\nCaboozled buys.",
+		"How does Cab feel when he gets disconnected?\nConfuzled_pie.",
+		"What does Cab do in zero gravity?\nCaboozled flies.",
+		"What kind of bread does Cab eat?\nCaboozled rye.",
+		"What does Cab serve at a fast food restaurant?\nCaboozled fries.",
+		"How does Cab act when he's embarrassed?\nCaboozled shie.",
+		"What's Cab's gender?\nCaboozled guy.",
+		"What does Cab do to you no one?\nCaboozled spies.",
+		"What happens when Cab goes 6-6 against another player?\nCaboozled ties.",
+		"When does Cab do when he's in a tourney?\nCaboozled vies."
         ]
 
         const randomPun = Math.floor((Math.random() * puns.length));
