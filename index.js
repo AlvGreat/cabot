@@ -54,6 +54,7 @@ client.on('message', async message => {
         let sentEmbed = await message.channel.send(embed);
         sentEmbed.react('739717347618717726')
         sentEmbed.react('733831723187568690')
+        sentEmbed.react('📹')
     }
 
     else if (command === "ping") {
@@ -80,6 +81,9 @@ client.on("messageReactionAdd", async (reaction, user)=>{
             }
             else if(reaction.emoji.name === "thonk") {
                 await reaction.message.guild.members.cache.get(user.id).roles.add('744805166888386560');
+            }
+            else if(reaction.emoji.name === "video_camera") {
+                await reaction.message.guild.members.cache.get(user.id).roles.add('769766202527449108');
             }
         }
     }
