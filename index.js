@@ -49,7 +49,7 @@ client.on('message', async message => {
 
         let embed = new MessageEmbed()
         .setTitle('Server Roles')
-        .setDescription('React to this message with the emote corresponding to the role you want!\n\n<:cabwot:739717347618717726> - Quiz Subscriber Role (Grants ability to view tetris exercises)\n<:thonk:733831723187568690> - Lecture Announcements Role (Will receive pings)')
+        .setDescription('React to this message with the emote corresponding to the role you want!\n\n<:cabwot:739717347618717726> - Quiz Subscriber Role (Grants ability to view tetris exercises)\n<:thonk:733831723187568690> - Lecture Announcements Role (Will receive pings)\n:video_camera: - For people who can record UC replays')
         .setColor('00688B')
         let sentEmbed = await message.channel.send(embed);
         sentEmbed.react('739717347618717726')
@@ -82,7 +82,7 @@ client.on("messageReactionAdd", async (reaction, user)=>{
             else if(reaction.emoji.name === "thonk") {
                 await reaction.message.guild.members.cache.get(user.id).roles.add('744805166888386560');
             }
-            else if(reaction.emoji.name === "video_camera") {
+            else if(reaction.emoji.name === "📹") {
                 await reaction.message.guild.members.cache.get(user.id).roles.add('769766202527449108');
             }
         }
@@ -111,6 +111,9 @@ client.on("messageReactionRemove", async (reaction, user)=>{
             }
             else if(reaction.emoji.name === "thonk") {
                 await reaction.message.guild.members.cache.get(user.id).roles.remove('744805166888386560');
+            }
+            else if(reaction.emoji.name === "📹") {
+                await reaction.message.guild.members.cache.get(user.id).roles.remove('769766202527449108');
             }
         }
     }
