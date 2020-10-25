@@ -61,19 +61,18 @@ client.on('message', async message => {
         message.channel.send("Pong, I'm currently online! My commands are: !cabpun, !quizpings")
     }
     else if (command === "togglecoach") {
-      var coachRole = "721831112103428160";
-      var activeCoachRole = "769805724930277416";
+      let coachRole = "721831112103428160";
+      let activeCoachRole = "769805724930277416";
 
       //var coachRole = "769812406758539285";
       //var activeCoachRole = "647172876406882329";
       if (message.member.roles.cache.has(coachRole)){
-        console.log('here');
         if (message.member.roles.cache.has(activeCoachRole)) {
           message.member.roles.remove(activeCoachRole);
-          message.reply("unset as active coach")
+          message.reply("Unset as active coach.");
         } else {
           message.member.roles.add(activeCoachRole);
-          message.reply("set as active coach")
+          message.reply("Set as active coach.");
         }
       }
     }
