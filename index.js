@@ -49,7 +49,7 @@ client.on('message', async message => {
 
         let embed = new MessageEmbed()
         .setTitle('Server Roles')
-        .setDescription('React to this message with the emote corresponding to the role you want!\n\n<:cabwot:739717347618717726> - Quiz Subscriber Role (Grants ability to view tetris exercises)\n<:thonk:733831723187568690> - Lecture Announcements Role (Will receive pings)\n:video_camera: - For people who can record vs replays to submit with their coaching requests')
+        .setDescription('React to this message with the emote corresponding to the role you want!\n\n<:cabwot:739717347618717726> - Quiz Subscriber Role (Grants ability to view tetris exercises)\n<:thonk:733831723187568690> - Lecture Announcements Role (Will receive pings)\n:video_camera: - For people who can record vs replays for others to submit with their coaching requests (see #how-to-find a coach for details)')
         .setColor('00688B')
         let sentEmbed = await message.channel.send(embed);
         sentEmbed.react('739717347618717726')
