@@ -92,15 +92,13 @@ client.on('message', async message => {
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions")});
       }
     } else if (command == "queue") {
-      /*
+
       let coachRole = "721831112103428160";
       let serverID = "718603683624910941"
       let channelID = "773575708613935104"
-      */
 
-      let serverID = "749900285127688223"
-      let channelID = "785621849706201118"
-      //if (message.member.roles.cache.has(coachRole)){
+
+      if (message.member.roles.cache.has(coachRole)){
         client.channels.fetch(channelID).then((queueChannel) => {
           queueChannel.messages.fetch().then((messages) => {
             var arr = [];
@@ -112,7 +110,7 @@ client.on('message', async message => {
             message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
           })
         })
-      //}
+      }
     }
 });
 
