@@ -58,7 +58,7 @@ client.on('message', async message => {
     }
 
     else if (command === "ping") {
-        message.channel.send("Pong, I'm currently online! My commands are: !cabpun, !quizpings")
+        message.channel.send("Pong, I'm currently online! My commands are: !ping, !cabpun, !roles, and !togglecoach")
     }
     else if (command === "togglecoach") {
       let coachRole = "721831112103428160";
