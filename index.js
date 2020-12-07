@@ -76,7 +76,7 @@ client.on('message', async message => {
         }
       }
     } else if (command == "nickname") {
-      let participantRole = "";
+      let participantRole = "785609922654109796";
       if (message.member.roles.cache.has(participantRole)) {
         message.reply("Tournament participants cannot change their nickname to make finding your opponent easier on tournament day.")
       } else {
