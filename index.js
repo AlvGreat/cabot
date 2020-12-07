@@ -91,25 +91,28 @@ client.on('message', async message => {
         .then(() => message.reply("nickname set"))
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions")});
       }
-    } else if (command = "queue") {
-
+    } else if (command == "queue") {
+      /*
       let coachRole = "721831112103428160";
       let serverID = "718603683624910941"
       let channelID = "773575708613935104"
-      if (message.member.roles.cache.has(coachRole)){
-        let queueChannel = client.channels.get(channelID);
+      */
 
-        queueChannel.messages.fetch().then((messages) => {
-          var toSend = "**Unanswered Coaching Requests**\n";
-          messages.each((msg) => {
-            if (msg.reactions.cache.size == 0) {
-              toSend += `https://discord.com/channels/${serverID}/${channelID}/${msg.id}`
-              toSend += "\n"
-            }
+      let serverID = "749900285127688223"
+      let channelID = "785621849706201118"
+      //if (message.member.roles.cache.has(coachRole)){
+        client.channels.fetch(channelID).then((queueChannel) => {
+          queueChannel.messages.fetch().then((messages) => {
+            var arr = [];
+            messages.each((msg) => {
+              if (msg.reactions.cache.size == 0) {
+                arr.unshift(`https://discord.com/channels/${serverID}/${channelID}/${msg.id}`)
+              }
+            })
+            message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
           })
-          message.channel.send(toSend);
         })
-      }
+      //}
     }
 });
 
@@ -175,3 +178,4 @@ client.on("messageReactionRemove", async (reaction, user)=>{
 
 
 client.login(process.env.BOT_TOKEN);
+//client.login("Nzc3MDEwMjAxNjQ2ODU4MjUw.X69NJA.FOPnNqruJupLmEoFRuxtKauP3Uo");
