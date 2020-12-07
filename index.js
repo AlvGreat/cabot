@@ -75,6 +75,13 @@ client.on('message', async message => {
           message.reply("Set as active coach.");
         }
       }
+    } else if (command == "nickname") {
+      let participantRole = "";
+      if (message.member.roles.cache.has(participantRole)) {
+        message.reply("Tournament participants cannot change their nickname to make finding your opponent easier on tournament day.")
+      } else {
+        message.member.setNickname(args[1]).then(() => message.reply("nickname set"));
+      }
     }
 });
 
@@ -137,6 +144,7 @@ client.on("messageReactionRemove", async (reaction, user)=>{
         console.log(e);
     }
 });
+
 
 client.login(process.env.BOT_TOKEN);
 //client.login(token);
