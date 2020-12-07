@@ -80,7 +80,9 @@ client.on('message', async message => {
       if (message.member.roles.cache.has(participantRole)) {
         message.reply("Tournament participants cannot change their nickname to make finding your opponent easier on tournament day.")
       } else {
-        message.member.setNickname(args[1]).then(() => message.reply("nickname set"));
+        message.member.setNickname(args[0])
+        .then(() => message.reply("nickname set"))
+        .catch(() => {message.reply("I can't change your nickname, probably because of permissions")});
       }
     }
 });
@@ -147,4 +149,3 @@ client.on("messageReactionRemove", async (reaction, user)=>{
 
 
 client.login(process.env.BOT_TOKEN);
-//client.login(token);
