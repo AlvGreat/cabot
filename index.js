@@ -63,6 +63,7 @@ client.on('message', async message => {
     else if (command === "togglecoach") {
       let coachRole = "721831112103428160";
       let activeCoachRole = "769805724930277416";
+      let retiredCoachRole = "771925290145677322"
 
       //var coachRole = "769812406758539285";
       //var activeCoachRole = "647172876406882329";
@@ -74,7 +75,13 @@ client.on('message', async message => {
           message.member.roles.add(activeCoachRole);
           message.reply("Set as active coach.");
         }
+      } else if (message.member.roles.cache.has(retiredCoachRole)){
+        message.member.roles.remove(retiredCoachRole);
+        message.member.roles.add(activeCoachRole);
+        message.member.roles.add(coachRole);
+        message.reply("Set as active coach. Welcome back!");
       }
+
     } else if (command == "nickname") {
       let participantRole = "785609922654109796";
       if (message.member.roles.cache.has(participantRole)) {
@@ -83,6 +90,25 @@ client.on('message', async message => {
         message.member.setNickname(args.join(" "))
         .then(() => message.reply("nickname set"))
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions")});
+      }
+    } else if (command = "queue") {
+
+      let coachRole = "721831112103428160";
+      let serverID = "718603683624910941"
+      let channelID = "773575708613935104"
+      if (message.member.roles.cache.has(coachRole)){
+        let queueChannel = client.channels.get(channelID);
+
+        queueChannel.messages.fetch().then((messages) => {
+          var toSend = "**Unanswered Coaching Requests**\n";
+          messages.each((msg) => {
+            if (msg.reactions.cache.size == 0) {
+              toSend += `https://discord.com/channels/${serverID}/${channelID}/${msg.id}`
+              toSend += "\n"
+            }
+          })
+          message.channel.send(toSend);
+        })
       }
     }
 });
