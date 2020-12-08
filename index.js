@@ -105,10 +105,11 @@ client.on('message', async message => {
     
     else if (command == "queue") {
       const coachRole = "721831112103428160";
-      const serverID = "718603683624910941"
-      const channelID = "773575708613935104"
-
-      if (message.member.roles.cache.has(coachRole)){
+      const serverID = "718603683624910941";
+      const channelID = "773575708613935104";
+      const staffRole = "718603985874845737";
+      
+      if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
         client.channels.fetch(channelID).then((queueChannel) => {
           queueChannel.messages.fetch().then((messages) => {
             var arr = [];
