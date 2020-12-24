@@ -61,7 +61,7 @@ client.on('message', async message => {
         sentEmbed.react('733831723187568690')
         sentEmbed.react('📹')
     }
-    
+
     else if (command === "help") {
         message.channel.send("**Commands**:\n!help, !ping, !cabpun, !roles, !nickname, !togglecoach [coaches only], and !queue [coaches only]");
     }
@@ -90,8 +90,8 @@ client.on('message', async message => {
         message.reply("Set as active coach. Welcome back!");
       }
 
-    } 
-    
+    }
+
     else if (command == "nickname") {
       let participantRole = "785609922654109796";
       if (message.member.roles.cache.has(participantRole)) {
@@ -101,21 +101,23 @@ client.on('message', async message => {
         .then(() => message.reply("nickname set"))
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions. Please contact a staff member if you need help.")});
       }
-    } 
-    
+    }
+
     else if (command == "queue") {
       const coachRole = "721831112103428160";
       const serverID = "718603683624910941";
       const channelID = "773575708613935104";
       const staffRole = "718603985874845737";
-      
+
       if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
         client.channels.fetch(channelID).then((queueChannel) => {
           queueChannel.messages.fetch().then((messages) => {
             var arr = [];
             messages.each((msg) => {
-              if (msg.reactions.cache.size == 0) {
-                arr.unshift(`https://discord.com/channels/${serverID}/${channelID}/${msg.id}`)
+              if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
+                var nameField = msg.embeds.fields.find(e => e.name == "Username");
+                var learnField = msg.embeds.fields.find(e => e.name == "What they want to work on");
+                arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
               }
             })
             message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
