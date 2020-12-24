@@ -116,7 +116,6 @@ client.on('message', async message => {
             var arr = [];
             messages.each((msg) => {
               if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
-                message.channel.send(`https://discord.com/channels/${serverID}/${channelID}/${msg.id}`)
                   var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                   if (!nameField || !learnField)
