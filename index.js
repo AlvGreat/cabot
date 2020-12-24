@@ -109,34 +109,35 @@ client.on('message', async message => {
       const channelID = "773575708613935104";
       const staffRole = "718603985874845737";
       message.reply("a");
-      try {
-        if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
-          client.channels.fetch(channelID).then((queueChannel) => {
 
-            queueChannel.messages.fetch().then((messages) => {
-              var arr = [];
-              messages.each((msg) => {
-                if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
+      if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
+        client.channels.fetch(channelID).then((queueChannel) => {
 
+          queueChannel.messages.fetch().then((messages) => {
+            var arr = [];
+            messages.each((msg) => {
+              if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
+                try {
                   var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                   if (!nameField || !learnField)
                     return;
                   arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
+                } catch (e) {
+                  message.channel.send(e.message);
                 }
-              })
-              message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
-            }).catch((e) => {
-              message.channel.send(e.message)
+                
+              }
             })
+            message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
+          }).catch((e) => {
+            message.channel.send(e.message)
           })
+        })
         } else {
           message.channel.send("insufficient perms");
         }
-      } catch (e) {
-        message.channel.send(e.message);
-      }
-    }
+
 });
 
 // UC server id, for adding a role after adding reaction
