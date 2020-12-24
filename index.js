@@ -126,9 +126,9 @@ client.on('message', async message => {
         } else {
           message.reply("insufficient perms");
         }
-      }
-    } catch (e) {
+      } catch (e) {
       message.reply(e.message);
+      }
     }
 });
 
