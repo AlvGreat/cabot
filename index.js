@@ -111,11 +111,14 @@ client.on('message', async message => {
       message.reply("a");
       try {
         if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
+          message.reply("b");
           client.channels.fetch(channelID).then((queueChannel) => {
+            message.reply("c");
             queueChannel.messages.fetch().then((messages) => {
               var arr = [];
               messages.each((msg) => {
                 if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
+                  message.reply("d");
                   var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                   arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
