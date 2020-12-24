@@ -108,6 +108,7 @@ client.on('message', async message => {
       const serverID = "718603683624910941";
       const channelID = "773575708613935104";
       const staffRole = "718603985874845737";
+      message.reply("a");
       try {
         if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
           client.channels.fetch(channelID).then((queueChannel) => {
@@ -121,13 +122,15 @@ client.on('message', async message => {
                 }
               })
               message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
+            }).catch((e) => {
+              message.channel.send(e.message)
             })
           })
         } else {
-          message.reply("insufficient perms");
+          message.channel.send("insufficient perms");
         }
       } catch (e) {
-      message.reply(e.message);
+        message.channel.send(e.message);
       }
     }
 });
