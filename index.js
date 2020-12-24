@@ -135,10 +135,10 @@ client.on('message', async message => {
             message.channel.send(e.message)
           })
         })
-        } else {
-          message.channel.send("insufficient perms");
-        }
-
+      } else {
+        message.channel.send("insufficient perms");
+      }
+    }
 });
 
 // UC server id, for adding a role after adding reaction
