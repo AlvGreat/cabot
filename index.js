@@ -124,11 +124,11 @@ client.on('message', async message => {
             })
           })
         } else {
-          msg.reply("insufficient perms");
+          message.reply("insufficient perms");
         }
       }
     } catch (e) {
-      msg.reply(e.message);
+      message.reply(e.message);
     }
 });
 
