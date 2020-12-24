@@ -121,6 +121,8 @@ client.on('message', async message => {
                   message.reply("d");
                   var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
+                  if (!nameField || !learnField)
+                    return;
                   arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
                 }
               })
