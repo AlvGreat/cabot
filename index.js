@@ -115,8 +115,8 @@ client.on('message', async message => {
             var arr = [];
             messages.each((msg) => {
               if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
-                var nameField = msg.embeds.fields.find(e => e.name == "Username");
-                var learnField = msg.embeds.fields.find(e => e.name == "What they want to work on");
+                var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
+                var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                 arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
               }
             })
