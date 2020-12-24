@@ -108,22 +108,27 @@ client.on('message', async message => {
       const serverID = "718603683624910941";
       const channelID = "773575708613935104";
       const staffRole = "718603985874845737";
-
-      if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
-        client.channels.fetch(channelID).then((queueChannel) => {
-          queueChannel.messages.fetch().then((messages) => {
-            var arr = [];
-            messages.each((msg) => {
-              if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
-                var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
-                var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
-                arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
-              }
+      try {
+        if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
+          client.channels.fetch(channelID).then((queueChannel) => {
+            queueChannel.messages.fetch().then((messages) => {
+              var arr = [];
+              messages.each((msg) => {
+                if (msg.reactions.cache.size == 0 && msg.embeds.length > 0) {
+                  var nameField = msg.embeds[0].fields.find(e => e.name == "Username");
+                  var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
+                  arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
+                }
+              })
+              message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
             })
-            message.channel.send("**Unanswered Coaching Requests**\n" + arr.join("\n"));
           })
-        })
+        } else {
+          msg.reply("insufficient perms");
+        }
       }
+    } catch (e) {
+      msg.reply(e.message);
     }
 });
 
