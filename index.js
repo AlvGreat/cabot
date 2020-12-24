@@ -111,7 +111,7 @@ client.on('message', async message => {
 
       if (message.member.roles.cache.has(coachRole) || message.member.roles.cache.has(staffRole)) {
         client.channels.fetch(channelID).then((queueChannel) => {
-          message.channel.send("**Unanswered Coaching Requests**\n");
+          var toSend = "**Unanswered Coaching Requests**\n";
           queueChannel.messages.fetch().then((messages) => {
             var arr = [];
             messages.each((msg) => {
@@ -120,11 +120,19 @@ client.on('message', async message => {
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                   if (!nameField || !learnField)
                     return;
-                  message.channel.send(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n`)
+                  arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n What they want to work on: ${learnField.value} \n \n`)
               }
             })
 
-
+            for (var i = 0; i < arr.length; i++) {
+              if (toSend.length + arr[i].length >= 2000) {
+                message.channel.send(toSend);
+                toSend = "";
+              }
+              toSend += arr[i];
+            }
+            if (toSend.length > 0)
+              message.channel.send(toSend);
 
           }).catch((e) => {
             message.channel.send(e.message)
