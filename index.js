@@ -46,7 +46,22 @@ client.on('message', async message => {
         const randomPun = Math.floor((Math.random() * puns.length));
         message.channel.send(puns[randomPun]);
     }
+    
+    else if (command === "avatar" || command === "pfp") {
+        let target = message.mentions.users.first() || message.author;
 
+        const Embed = {
+            color: 0x92C6DD,
+            author: {
+                name: `${target.username}'s avatar:`,
+            },
+            image:{
+                url: `${target.displayAvatarURL({ format: "png", dynamic: true, size: 256 })}`,
+            },
+        };
+        message.channel.send( { embed:Embed });
+    }
+  
     else if (command === "roles") {
         // if (!message.member.hasPermission("MANAGE_CHANNELS")) {
         //     return message.reply("You do not have permissions to use this command");
@@ -102,7 +117,7 @@ client.on('message', async message => {
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions. Please contact a staff member if you need help.")});
       }
     }
-
+    
     else if (command == "queue") {
       const coachRole = "721831112103428160";
       const serverID = "718603683624910941";
