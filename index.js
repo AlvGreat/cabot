@@ -78,7 +78,7 @@ client.on('message', async message => {
     }
 
     else if (command === "help") {
-        message.channel.send("**Commands**:\n!help, !ping, !cabpun, !roles, !nickname, !togglecoach [coaches only], and !queue [coaches only]");
+        message.channel.send("**Commands**:\n!help, !ping, !cabpun, !roles, !nickname, !avatar, !togglecoach [coaches only], and !queue [coaches only]");
     }
 
     else if (command === "ping") {
