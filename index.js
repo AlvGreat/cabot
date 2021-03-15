@@ -107,18 +107,22 @@ client.on('message', async message => {
 
     }
 
-    else if (command == "nickname") {
+    else if (command === "nickname" || command === "nick") {
       let participantRole = "785609922654109796";
       if (message.member.roles.cache.has(participantRole)) {
         message.reply("Tournament participants cannot change their nickname to make finding your opponent easier on tournament day.")
-      } else {
+      } 
+      else if (args.join(" ").length > 32) {
+        message.reply("The nickname you provided is too long. Please contact a staff member if you need help.")
+      }
+      else {
         message.member.setNickname(args.join(" "))
         .then(() => message.reply("nickname set"))
         .catch(() => {message.reply("I can't change your nickname, probably because of permissions. Please contact a staff member if you need help.")});
       }
     }
     
-    else if (command == "queue") {
+    else if (command === "queue") {
       const coachRole = "721831112103428160";
       const serverID = "718603683624910941";
       const channelID = "773575708613935104";
