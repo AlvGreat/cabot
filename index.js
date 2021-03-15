@@ -113,7 +113,7 @@ client.on('message', async message => {
         message.reply("Tournament participants cannot change their nickname to make finding your opponent easier on tournament day.")
       } 
       else if (args.join(" ").length > 32) {
-        message.reply("The nickname you provided is too long. Please contact a staff member if you need help.")
+        message.reply("The nickname you provided is too long (greater than 32 characters). Please contact a staff member if you need help.")
       }
       else {
         message.member.setNickname(args.join(" "))
