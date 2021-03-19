@@ -61,7 +61,12 @@ client.on('message', async message => {
         };
         message.channel.send( { embed:Embed });
     }
-  
+    
+    else if (command === "cabdab") {
+        const pic = new MessageAttachment("./cabdab.png");
+		    message.channel.send(pic);
+    }
+
     else if (command === "roles") {
         // if (!message.member.hasPermission("MANAGE_CHANNELS")) {
         //     return message.reply("You do not have permissions to use this command");
