@@ -63,7 +63,7 @@ client.on('message', async message => {
     }
     
     else if (command === "cabdab") {
-        const pic = new MessageAttachment("./cabdab.png");
+        const pic = new MessageAttachment("cabdab.png");
 		    message.channel.send(pic);
     }
 
