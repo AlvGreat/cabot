@@ -144,7 +144,9 @@ client.on('message', async message => {
                   var learnField = msg.embeds[0].fields.find(e => e.name == "What they want to work on");
                   if (!nameField || !learnField)
                     return;
-                  arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} \n  What they want to work on: ${learnField.value} \n`)
+		  var daysOld = Math.floor((Date.now() - msg.createdTimestamp) / 86400000 );
+
+                  arr.unshift(`${nameField.value}: https://discord.com/channels/${serverID}/${channelID}/${msg.id} (${daysOld} days ago) \n  What they want to work on: ${learnField.value} \n`)
               }
             })
 
